@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "frontend: dev",
+            "type": "shell",
+            "command": "npm run dev",
+            "options": {
+                "cwd": "${workspaceFolder}/frontend"
+            },
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "backend: flask",
+            "type": "shell",
+            "command": "C:/Users/jonat/OneDrive/Escritorio/Repositorio/jonatha1992/DESARROLLO-Y-ARQUITECTURAS-WEB/Proyecto_Final/.venv/Scripts/python.exe app.py",
+            "options": {
+                "cwd": "${workspaceFolder}/backend"
+            },
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+}
