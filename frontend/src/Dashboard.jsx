@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { auth } from './firebase';
+import { useAuth } from './AuthProvider';
+import './Dashboard.css';
 
 const Dashboard = () => {
     const [turnos, setTurnos] = useState([]);
@@ -10,14 +11,30 @@ const Dashboard = () => {
     const [formData, setFormData] = useState({
         fecha: '',
         hora: '',
+        servicio: '',
         descripcion: '',
+        precio: '',
         estado: 'pendiente'
     });
 
+    const { currentUser, token, logout } = useAuth();
+
+    // Servicios disponibles
+    const servicios = [
+        { nombre: 'Depilación Facial', precio: 15000 },
+        { nombre: 'Axilas', precio: 12000 },
+        { nombre: 'Piernas Completas', precio: 45000 },
+        { nombre: 'Bikini', precio: 25000 },
+        { nombre: 'Brazos Completos', precio: 28000 },
+        { nombre: 'Espalda', precio: 35000 }
+    ];
+
     // Cargar turnos al inicializar
     useEffect(() => {
-        fetchTurnos();
-    }, []);
+        if (token) {
+            fetchTurnos();
+        }
+    }, [token]);
 
     const fetchTurnos = async () => {
         try {
