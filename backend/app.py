@@ -5,6 +5,7 @@ from config.config import config
 from models.database import db, init_db
 from routes.main import main_bp
 from routes.turnos import turnos_bp
+from routes.auth import auth_bp
 
 def create_app(config_name='default'):
     """Factory function para crear la aplicación Flask"""
@@ -12,8 +13,7 @@ def create_app(config_name='default'):
     
     # Configuración
     app.config.from_object(config[config_name])
-    
-    # Extensiones
+      # Extensiones
     CORS(app)
     db.init_app(app)
     migrate = Migrate(app, db)
@@ -21,6 +21,7 @@ def create_app(config_name='default'):
     # Registrar blueprints
     app.register_blueprint(main_bp)
     app.register_blueprint(turnos_bp)
+    app.register_blueprint(auth_bp)
     
     # Manejo de errores
     @app.errorhandler(404)

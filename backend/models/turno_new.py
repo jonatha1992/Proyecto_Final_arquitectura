@@ -6,7 +6,7 @@ class Turno(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     cliente_id = db.Column(db.Integer, db.ForeignKey('clientes.id'), nullable=False)
-    usuario = db.Column(db.String(120), nullable=True)  # Opcional, se llena automáticamente
+    usuario = db.Column(db.String(120), nullable=False)  # Mantenemos por compatibilidad
     fecha = db.Column(db.String(50), nullable=False)
     hora = db.Column(db.String(20), nullable=False)
     descripcion = db.Column(db.String(200), nullable=True)
@@ -15,20 +15,13 @@ class Turno(db.Model):
     precio = db.Column(db.Float, nullable=True)  # Precio del servicio
     notas = db.Column(db.Text, nullable=True)  # Notas adicionales
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
-    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())    # Relación con Cliente (se define en Cliente con backref)
-    # cliente = db.relationship('Cliente', back_populates='turnos')
+    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
     def __init__(self, **kwargs):
         """Constructor que asigna valores por defecto"""
         super().__init__(**kwargs)
         if self.estado is None:
             self.estado = 'pendiente'
-        # Si no se proporciona usuario pero sí cliente_id, obtener el email del cliente
-        if not self.usuario and self.cliente_id:
-            from models.cliente import Cliente
-            cliente = Cliente.query.get(self.cliente_id)
-            if cliente:
-                self.usuario = cliente.email
 
     def __repr__(self):
         return f'<Turno {self.id}: {self.usuario} - {self.fecha} {self.hora}>'
