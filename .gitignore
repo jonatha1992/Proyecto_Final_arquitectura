@@ -1,0 +1,18 @@
+# Root Gitignore
+
+# Ignore instance folder containing runtime data
+instance/
+
+# Ignore database files
+*.db
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Editor swap files
+*.swp
+*.swo
