@@ -35,7 +35,7 @@ backend/
 │   └── test_turnos_api.py # Tests de API turnos
 ├── migrations/           # Migraciones de base de datos
 ├── requirements.txt      # Dependencias Python
-├── .env                 # Variables de entorno
+├── .env.example         # Variables de entorno de ejemplo
 └── README.md            # Documentación
 ```
 
@@ -75,7 +75,7 @@ frontend/
 ├── public/
 ├── package.json
 ├── vite.config.js
-└── .env                 # Variables de entorno Firebase
+└── .env.example         # Variables de entorno Firebase
 ```
 
 #### 🔧 **Tecnologías Frontend**
