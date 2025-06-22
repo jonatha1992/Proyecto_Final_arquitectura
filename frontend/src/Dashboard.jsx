@@ -39,7 +39,7 @@ const Dashboard = () => {
     const fetchTurnos = async () => {
         try {
             setLoading(true);
-            const response = await fetch('http://localhost:5000/turnos');
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/turnos`);
 
             if (!response.ok) {
                 throw new Error('Error al cargar turnos');
@@ -71,8 +71,8 @@ const Dashboard = () => {
             };
 
             const url = editingTurno
-                ? `http://localhost:5000/turnos/${editingTurno.id}`
-                : 'http://localhost:5000/turnos';
+                ? `${import.meta.env.VITE_API_URL}/turnos/${editingTurno.id}`
+                : `${import.meta.env.VITE_API_URL}/turnos`;
 
             const method = editingTurno ? 'PUT' : 'POST';
 
@@ -102,7 +102,7 @@ const Dashboard = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/turnos/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/turnos/${id}`, {
                 method: 'DELETE'
             });
 
