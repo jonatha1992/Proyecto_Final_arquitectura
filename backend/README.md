@@ -23,7 +23,7 @@ backend/
 │   ├── test_models.py    # Tests de modelos
 │   ├── test_routes.py    # Tests de rutas generales
 │   └── test_turnos_api.py # Tests de API de turnos
-├── .env                  # Variables de entorno
+├── .env.example          # Variables de entorno de ejemplo
 ├── .gitignore           # Archivos a ignorar en git
 ├── app.py               # Aplicación principal
 ├── requirements.txt     # Dependencias Python
@@ -43,12 +43,10 @@ backend/
    pip install -r requirements.txt
    ```
 
-3. **Configurar variables de entorno (.env):**
-   ```
-   FLASK_ENV=development
-   SECRET_KEY=tu_clave_secreta
-   DATABASE_URL=sqlite:///turnos.db
-   FIREBASE_CREDENTIALS_PATH=firebase_service_account.json
+3. **Copiar `.env.example` a `.env` y configurar variables:**
+   ```bash
+   cp .env.example .env
+   # Edita los valores según tu entorno
    ```
 
 4. **Ejecutar migraciones:**
