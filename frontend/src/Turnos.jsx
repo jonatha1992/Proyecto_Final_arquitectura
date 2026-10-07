@@ -25,7 +25,8 @@ export default function Turnos() {
                 });
                 if (!res.ok) throw new Error("Error al obtener turnos");
                 const data = await res.json();
-                setTurnos(data.turnos);
+                const list = Array.isArray(data) ? data : (data.turnos || []);
+                setTurnos(list);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -40,9 +41,19 @@ export default function Turnos() {
     return (
         <div>
             <h2>Turnos</h2>
-            <ul>
-                {turnos.map((t, i) => <li key={i}>{t}</li>)}
-            </ul>
+            {turnos.length === 0 ? (
+                <p>No hay turnos registrados.</p>
+            ) : (
+                <ul style={{ listStyle: "none", padding: 0 }}>
+                    {turnos.map((t, i) => (
+                        <li key={t.id || i} style={{ borderBottom: "1px solid #ccc", padding: "8px 0" }}>
+                            <strong>{t.fecha || "Fecha N/D"} {t.hora ? `- ${t.hora}` : ""}</strong>
+                            {t.descripcion ? `: ${t.descripcion}` : ""}
+                            {t.usuario ? ` (${t.usuario})` : ""}
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 }
